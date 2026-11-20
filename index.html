@@ -964,8 +964,8 @@
       // ============================================================
       let started = false;
       let activeTool = 'auto';
-      let yaw = 0;
-      let pitch = -0.06;
+      let yaw = Math.PI; // Face +Z directly toward the lakeside cabin!
+      let pitch = -0.04;
       const playerPos = new THREE.Vector3(0, 1.75, -9.2);
       let vy = 0;
       let onGround = true;
@@ -1208,9 +1208,7 @@
         }
 
         camera.position.copy(playerPos);
-        camera.rotation.order = 'YXZ';
-        camera.rotation.y = yaw;
-        camera.rotation.x = pitch;
+        camera.rotation.set(pitch, yaw, 0, 'YXZ');
 
         // Raycast from screen center for context interaction
         raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
